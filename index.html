@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>VALORANT — Ultra</title>
+<title>FPS SHOOTER — Ultra</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&family=Rajdhani:wght@400;600;700&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -137,6 +137,8 @@ body{font-family:'Rajdhani',sans-serif;color:#ece8e1;}
 .weapon-card-name{font-size:13px;font-weight:700;letter-spacing:1.5px;color:#ece8e1;text-align:center;}
 .weapon-card-cost{font-family:'Share Tech Mono',monospace;font-size:12px;color:#ffe05c;}
 .armor-shield{display:inline-block;width:130px;height:50px;text-align:center;line-height:50px;font-size:32px;}
+/* BUY PHASE GUN DECOR */
+.buy-gun-decor{position:absolute;right:270px;top:50%;transform:translateY(-50%);opacity:.07;pointer-events:none;}
 
 .buy-sidebar{width:260px;background:#0a141e;border-left:1px solid rgba(255,255,255,.06);padding:20px;display:flex;flex-direction:column;gap:14px;flex-shrink:0;}
 .buy-sidebar h3{font-size:10px;color:#5a6774;letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;font-weight:700;}
@@ -284,6 +286,15 @@ body{font-family:'Rajdhani',sans-serif;color:#ece8e1;}
 .streak-dot{width:7px;height:7px;border-radius:50%;background:#ff4655;}
 .streak-dot.e{background:rgba(255,255,255,.1);}
 
+/* HOME SCREEN GUN DECORATIONS */
+.menu-gun{position:absolute;pointer-events:none;z-index:0;opacity:.13;filter:drop-shadow(0 0 18px rgba(255,70,85,.5));}
+.menu-gun-left{left:-60px;top:50%;transform:translateY(-52%) rotate(-18deg);}
+.menu-gun-right{right:-60px;top:50%;transform:translateY(-52%) rotate(18deg) scaleX(-1);}
+
+/* CREDIT */
+.menu-credit{font-family:'Share Tech Mono',monospace;font-size:11px;letter-spacing:4px;color:#4a5764;margin-top:8px;position:relative;z-index:1;text-transform:uppercase;}
+.menu-credit em{color:#ff4655;font-style:normal;}
+
 /* RANK BADGE in MENU */
 .menu-rank{position:absolute;top:24px;right:28px;display:flex;align-items:center;gap:10px;z-index:1;cursor:default;}
 .rank-tier-icon{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid;}
@@ -317,7 +328,7 @@ body{font-family:'Rajdhani',sans-serif;color:#ece8e1;}
 <body>
 
 <div id="loading">
-  <div class="load-logo">VALO<em>R</em>ANT</div>
+  <div class="load-logo">FPS <em>SHOOTER</em></div>
   <div class="load-spinner"></div>
   <div class="load-text" id="load-text">FETCHING AGENT DATA...</div>
 </div>
@@ -373,8 +384,34 @@ body{font-family:'Rajdhani',sans-serif;color:#ece8e1;}
 
 <div id="sMenu" class="screen on">
   <div class="menu-bg"></div>
-  <div class="logo">VALO<em>R</em>ANT</div>
+
+  <!-- Left gun decoration (Phantom rifle) -->
+  <svg class="menu-gun menu-gun-left" width="520" height="160" viewBox="0 0 300 92" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="36" width="175" height="13" rx="3" fill="#ff4655"/>
+    <rect x="48" y="34" width="20" height="34" rx="3" fill="#ff4655"/>
+    <rect x="152" y="22" width="100" height="42" rx="4" fill="#ff4655"/>
+    <rect x="168" y="60" width="24" height="38" rx="3" fill="#ff4655"/>
+    <rect x="213" y="62" width="22" height="36" rx="3" fill="#ff4655"/>
+    <rect x="250" y="27" width="50" height="20" rx="4" fill="#ff4655"/>
+    <rect x="158" y="11" width="58" height="13" rx="2" fill="#ff4655"/>
+    <rect x="168" y="3" width="38" height="10" rx="2" fill="#ff4655"/>
+    <rect x="0" y="33" width="14" height="19" rx="2" fill="#ff4655"/>
+  </svg>
+
+  <!-- Right gun decoration (Sheriff pistol) -->
+  <svg class="menu-gun menu-gun-right" width="360" height="200" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+    <rect x="0" y="42" width="108" height="18" rx="3" fill="#ff4655"/>
+    <rect x="66" y="28" width="90" height="32" rx="5" fill="#ff4655"/>
+    <rect x="108" y="57" width="32" height="58" rx="5" fill="#ff4655"/>
+    <path d="M90 60 Q88 92 120 94 L120 76 Q106 74 106 60 Z" fill="#ff4655"/>
+    <rect x="70" y="17" width="46" height="13" rx="3" fill="#ff4655"/>
+    <rect x="80" y="8" width="26" height="11" rx="2" fill="#ff4655"/>
+    <rect x="0" y="40" width="16" height="22" rx="3" fill="#ff4655"/>
+  </svg>
+
+  <div class="logo">FPS <em>SHOOTER</em></div>
   <div class="tagline">// 5V5 TACTICAL SHOOTER · DEFY THE LIMITS</div>
+  <div class="menu-credit">BY <em>ISHAN MOHAMMED</em></div>
   <div class="menu-buttons">
     <button class="mbtn" onclick="setMode('competitive');goAgent()">▶ COMPETITIVE</button>
     <button class="mbtn sec" onclick="setMode('unrated');goAgent()">UNRATED</button>
@@ -419,7 +456,17 @@ body{font-family:'Rajdhani',sans-serif;color:#ece8e1;}
 </div>
 
 <div id="sBuy" class="screen">
-  <div class="buy-top">
+  <div class="buy-top" style="position:relative;overflow:hidden;">
+    <!-- decorative rifle behind header content -->
+    <svg class="buy-gun-decor" width="480" height="80" viewBox="0 0 300 50" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="18" width="175" height="10" rx="2" fill="#ff4655"/>
+      <rect x="44" y="16" width="16" height="24" rx="2" fill="#ff4655"/>
+      <rect x="150" y="9" width="95" height="30" rx="3" fill="#ff4655"/>
+      <rect x="163" y="36" width="20" height="24" rx="2" fill="#ff4655"/>
+      <rect x="202" y="37" width="18" height="22" rx="2" fill="#ff4655"/>
+      <rect x="243" y="12" width="57" height="14" rx="3" fill="#ff4655"/>
+      <rect x="153" y="3" width="52" height="8" rx="2" fill="#ff4655"/>
+    </svg>
     <div class="buy-round-info">ROUND <em><span id="buy-round">1</span></em> · BUY PHASE</div>
     <div style="display:flex;align-items:center;gap:14px;">
       <div class="btbar"><div class="btfill" id="btfill" style="width:100%"></div></div>
@@ -839,7 +886,7 @@ function renderBuyWeps(){
       const eq=G.loadout.wep&&G.loadout.wep.uuid===w.uuid;
       const na=G.cr<w.cost&&!eq;
       html+=`<div class="weapon-card ${eq?'eq':''} ${na?'na':''}" onclick="bWep('${w.uuid}')">
-        ${w.icon?`<img src="${w.icon}" alt="${w.name}">`:`<div style="width:130px;height:50px;"></div>`}
+        ${w.icon?`<img src="${w.icon}" alt="${w.name}">`:`<svg width="130" height="50" viewBox="0 0 130 50" xmlns="http://www.w3.org/2000/svg" style="opacity:.45"><rect x="0" y="19" width="80" height="10" rx="2" fill="#ece8e1"/><rect x="42" y="17" width="12" height="22" rx="2" fill="#ece8e1"/><rect x="70" y="10" width="50" height="26" rx="3" fill="#ece8e1"/><rect x="78" y="33" width="14" height="18" rx="2" fill="#ece8e1"/><rect x="100" y="33" width="12" height="16" rx="2" fill="#ece8e1"/><rect x="118" y="13" width="12" height="10" rx="2" fill="#ece8e1"/></svg>`}
         <div class="weapon-card-name">${w.name}</div>
         <div class="weapon-card-cost">${w.cost?'💰 '+w.cost:'FREE'}</div>
       </div>`;
@@ -1022,7 +1069,7 @@ bind:{floor:0xc9a878,ceil:0xe8d4a0,fog:0xd8c89a,fogFar:140,accent:0xff8a3a,
     {label:'A',x:33,z:2,w:17,d:11,col:0xff7733},
     {label:'B',x:39,z:25,w:11,d:11,col:0x3377ff},
   ],
-  spawnAtk:{x:3,z:21},spawnDef:{x:52,z:21},
+  spawnAtk:{x:7,z:21},spawnDef:{x:49,z:21},
 },
 
 // ════════════════════════════════════════════
@@ -1102,7 +1149,7 @@ haven:{floor:0xc4b080,ceil:0xe0d0a0,fog:0xd0c090,fogFar:140,accent:0xffaa44,
     {label:'B',x:26,z:19,w:11,d:11,col:0x44ee77},
     {label:'C',x:6,z:2,w:8,d:12,col:0x4488ff},
   ],
-  spawnAtk:{x:30,z:45},spawnDef:{x:30,z:3},
+  spawnAtk:{x:30,z:45},spawnDef:{x:30,z:10},
 },
 
 // ════════════════════════════════════════════
@@ -1192,7 +1239,7 @@ split:{floor:0xa8b4c4,ceil:0xc8d0dc,fog:0xb8c4d0,fogFar:130,accent:0x4ab8ff,
     {label:'A',x:39,z:2,w:10,d:12,col:0x4488ff},
     {label:'B',x:39,z:25,w:10,d:12,col:0xff4488},
   ],
-  spawnAtk:{x:3,z:19},spawnDef:{x:50,z:19},
+  spawnAtk:{x:8,z:19},spawnDef:{x:50,z:19},
 },
 
 // ════════════════════════════════════════════
@@ -1292,7 +1339,7 @@ ascent:{floor:0xd4b888,ceil:0xe8dab0,fog:0xd8c8a0,fogFar:150,accent:0xffcc66,
     {label:'A',x:47,z:3,w:11,d:11,col:0xffcc44},
     {label:'B',x:47,z:33,w:11,d:11,col:0x44ffaa},
   ],
-  spawnAtk:{x:3,z:23},spawnDef:{x:56,z:23},
+  spawnAtk:{x:8,z:23},spawnDef:{x:56,z:23},
 },
 
 // ════════════════════════════════════════════
@@ -1381,7 +1428,7 @@ icebox:{floor:0xa0b8d0,ceil:0xc8d8e8,fog:0xb0c4d8,fogFar:130,accent:0x44aaff,
     {label:'A',x:43,z:2,w:10,d:11,col:0x44bbff},
     {label:'B',x:43,z:29,w:10,d:11,col:0x33ddee},
   ],
-  spawnAtk:{x:3,z:21},spawnDef:{x:52,z:21},
+  spawnAtk:{x:8,z:21},spawnDef:{x:52,z:21},
 },
 
 // Breeze / Sunset / Lotus — also enhanced
